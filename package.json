@@ -1,0 +1,12 @@
+{
+  "name": "edureach-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm run build --prefix client"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}
