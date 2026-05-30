@@ -13,15 +13,12 @@ app.use(
   cors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        process.env.CLIENT_URL || "http://localhost:5173",
+        "https://edureach-platform-vert.vercel.app",
         "http://localhost:5173",
         "http://localhost:5174",
         "http://localhost:5175",
       ];
-      if (process.env.VERCEL_URL) {
-        allowedOrigins.push(`https://${process.env.VERCEL_URL}`);
-      }
-      if (!origin || allowedOrigins.includes(origin) || origin.startsWith("http://localhost:") || (process.env.VERCEL_URL && origin.endsWith(".vercel.app"))) {
+      if (!origin || allowedOrigins.includes(origin) || origin.startsWith("http://localhost:")) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
@@ -32,6 +29,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
